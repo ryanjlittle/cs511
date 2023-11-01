@@ -69,15 +69,15 @@ theorem problem4d : forall_sufficiently_large n : ℕ, (3:ℤ) ^ n ≥ 2 ^ n + 1
 /-theorem problem5b : -/
 /-complete the rest of the header on your own and provide the proof-/
 
-def sum_of_squares: ℕ → ℕ
+def foo: ℕ → ℕ
   | 0 => 0
-  | n + 1 => 2*n+1 + sum_of_squares (n)
+  | n + 1 => 2*n+1 + foo (n)
 
-theorem problem5b {n : ℕ} : ∃ (k : ℕ), sum_of_squares (n) = k ^ 2 := by
+theorem problem5b {n : ℕ} : ∃ (k : ℕ), foo (n) = k ^ 2 := by
   use n
   simple_induction n with j IH
-  dsimp [sum_of_squares]
+  dsimp [foo]
   · numbers
   · calc
-      2*j + 1 + sum_of_squares (j) = 2*j + 1 + j^2 := by rw[IH]
+      2*j + 1 + foo (j) = 2*j + 1 + j^2 := by rw[IH]
       _ = (j + 1) ^ 2 := by ring
